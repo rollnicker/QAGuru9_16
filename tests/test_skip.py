@@ -7,19 +7,6 @@ import pytest
 from selene import browser, have
 
 
-# @pytest.mark.parametrize("height, width",
-#                          [(1980, 1280), (1080, 720)],
-#                          ids=["PC", "Mobile"]
-#                          )
-# def select_browser(device):
-#     assert device in [1980, 1080]
-#
-#
-# @pytest.mark.parametrize("device", ["Desktop", "Mobile"])
-# def select_browser(device):
-#     return device
-
-
 @pytest.fixture(autouse=True)
 def setup_browser(device):
     if device == "Desktop":
