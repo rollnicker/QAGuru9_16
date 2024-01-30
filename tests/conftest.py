@@ -15,7 +15,7 @@ def setup_browser2(device):
 
 
 @pytest.fixture(params=["Desktop", "Mobile"])
-def setup_browser(request, device):
+def setup_browser(request):
     browser.config.base_url = 'https://github.com/'
     dev = request.param
     if dev == "Desktop":
@@ -24,13 +24,6 @@ def setup_browser(request, device):
     elif dev == "Mobile":
         browser.config.window_height = 720
         browser.config.window_width = 480
-    if device == "Desktop":
-        browser.config.window_height = 1980
-        browser.config.window_width = 1280
-    elif device == "Mobile":
-        browser.config.window_height = 720
-        browser.config.window_width = 480
-        browser.config.base_url = 'https://github.com/'
 
 
 
