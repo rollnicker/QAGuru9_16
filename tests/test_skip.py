@@ -7,22 +7,12 @@ import pytest
 from selene import browser, have
 
 
-@pytest.fixture(autouse=True)
-def setup_browser(device):
-    if device == "Desktop":
-        browser.config.window_height = 1980
-        browser.config.window_width = 1280
-        browser.config.base_url = 'https://github.com/'
-    elif device == "Mobile":
-        browser.config.window_height = 720
-        browser.config.window_width = 480
-        browser.config.base_url = 'https://github.com/'
-
 
 @pytest.mark.parametrize("device",
                          [
                              pytest.param("Desktop"),
-                             pytest.param(("Mobile"), marks=[pytest.mark.skip(reason="Запускать только на компе")])
+                             pytest.param(("Mobile"), marks=[pytest.mark.skip(reason="Не работает "
+                                                                                     "в мобильном разрешении")])
                          ]
                          )
 def test_github_desktop(device):
@@ -33,11 +23,12 @@ def test_github_desktop(device):
 
 @pytest.mark.parametrize("device",
                          [
-                             pytest.param(("Desktop"), marks=[pytest.mark.skip(reason="Запускать только на компе")]),
+                             pytest.param(("Desktop"), marks=[pytest.mark.skip(reason="Не работает в десктопном "
+                                                                                      "разрешении")]),
                              pytest.param("Mobile")
                          ]
                          )
-def test_github_desktop(device):
+def test_github_mobile(device):
     browser.open("")
     browser.element(".Button--link").click()
     browser.element(".HeaderMenu-link--sign-in").click()

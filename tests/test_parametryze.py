@@ -8,18 +8,6 @@ desktop_only = pytest.mark.parametrize("setup_browser", ["Desktop"], indirect=Tr
 mobile_only = pytest.mark.parametrize("setup_browser", ["Mobile"], indirect=True)
 
 
-@pytest.fixture(params=["Desktop", "Mobile"], autouse=True)
-def setup_browser(request):
-    browser.config.base_url = 'https://github.com/'
-    if request.param == "Desktop":
-        browser.config.window_height = 1980
-        browser.config.window_width = 1280
-
-    elif request.param == "Mobile":
-        browser.config.window_height = 720
-        browser.config.window_width = 480
-
-
 @desktop_only
 def test_github_desktop():
     browser.open("")
