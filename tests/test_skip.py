@@ -15,7 +15,7 @@ from selene import browser, have
                                                                                      "в мобильном разрешении")])
                          ]
                          )
-def test_github_desktop(device):
+def test_github_desktop(setup_browser, device):
     browser.open("")
     browser.element(".HeaderMenu-link--sign-in").click()
     browser.element(".auth-form-header").should(have.text("Sign in to GitHub"))
@@ -28,7 +28,7 @@ def test_github_desktop(device):
                              pytest.param("Mobile")
                          ]
                          )
-def test_github_mobile(device):
+def test_github_mobile(setup_browser, device):
     browser.open("")
     browser.element(".Button--link").click()
     browser.element(".HeaderMenu-link--sign-in").click()
